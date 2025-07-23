@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Hello Sam! :3</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:ital,wght@1,400&family=Poppins&family=Mali&display=swap');
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: url("ChatGPT Image Jul 21, 2025, 01_23_45 PM.png") no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Pacifico', cursive;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding-top: 60px;
+      color: #ffffff;
+      position: relative;
+
+      /* Disable text selection */
+      user-select: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+
+      /* Pixelated arrow cursor */
+      cursor: url('https://i.imgur.com/9Ue8fTm.png'), auto;
+    }
+
+    .heart-container {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .heart {
+      position: absolute;
+      bottom: -60px;
+      width: 30px;
+      height: 30px;
+      background: rgba(255, 192, 203, 0.4);
+      filter: blur(4px);
+      opacity: 0.6;
+      transform-origin: center;
+      clip-path: polygon(
+        50% 0%, 61% 12%, 75% 15%, 85% 28%, 85% 45%, 75% 65%, 50% 85%, 25% 65%, 15% 45%, 15% 28%, 25% 15%, 39% 12%
+      );
+      animation: floatUp 6s linear infinite;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) scale(1) rotate(0deg);
+        opacity: 0.6;
+      }
+      100% {
+        transform: translateY(-150vh) scale(1.2) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+        text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.25);
+        color: #ffffff;
+      }
+      50% {
+        transform: scale(1.1);
+        text-shadow: 4px 4px 12px rgba(255, 192, 203, 0.8);
+        color: #ffb6c1;
+      }
+    }
+
+    @keyframes zoomIn {
+      0% {
+        transform: scale(0.8);
+        opacity: 0;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    .text-block {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    h1 {
+      font-size: 4em;
+      margin: 0;
+      animation: pulse 3s ease-in-out infinite;
+    }
+
+    h4 {
+      font-family: 'Mali', cursive;
+      font-size: 2em;
+      font-style: italic;
+      margin-top: 12px;
+      color: white;
+      opacity: 0.5;
+    }
+
+    .button-row {
+      position: absolute;
+      top: 55%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      gap: 20px;
+      z-index: 2;
+    }
+
+    .button-row button {
+      padding: 35px 60px;
+      border: none;
+      border-radius: 35px;
+      background-color: rgba(255, 192, 203, 0.8);
+      color: #fff;
+      font-size: 1.7em;
+      font-family: 'Poppins', sans-serif;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.35);
+    }
+
+    .button-row button:hover {
+      background-color: #ff99aa;
+    }
+
+    .popup-box {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: none;
+      background: rgba(0,0,0,0.4);
+      justify-content: center;
+      align-items: center;
+      z-index: 3;
+    }
+
+    .popup-content {
+      background: #fff;
+      color: #333;
+      padding: 30px;
+      border-radius: 20px;
+      width: 60%;
+      max-width: 600px;
+      position: relative;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.2em;
+      text-align: center;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+      animation: zoomIn 0.5s ease;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 12px;
+      right: 20px;
+      font-size: 1.5em;
+      cursor: pointer;
+      color: #888;
+    }
+
+    .bottom-text {
+      position: absolute;
+      bottom: 30px;
+      width: 100%;
+      text-align: center;
+      font-family: 'Mali', cursive;
+      font-size: 1.5em;
+      color: white;
+      opacity: 0.7;
+      z-index: 2;
+    }
+
+    .secret-button {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background-color: rgba(255, 192, 203, 0.85);
+      color: white;
+      border: none;
+      border-radius: 30px;
+      padding: 15px 25px;
+      font-size: 1em;
+      font-family: 'Poppins', sans-serif;
+      cursor: pointer;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+      z-index: 999;
+      transition: transform 0.3s ease, background-color 0.3s;
+    }
+
+    .secret-button:hover {
+      background-color: #ff99aa;
+      transform: scale(1.05);
+    }
+
+    /* CLICK HEART EFFECT */
+    .click-heart {
+      position: absolute;
+      font-size: 1.5rem;
+      color: #ff6b81;
+      animation: floatHeart 1s ease-out forwards;
+      pointer-events: none;
+      user-select: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+    }
+
+    @keyframes floatHeart {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-60px) scale(1.4);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Floating hearts -->
+  <div class="heart-container">
+    <div class="heart" style="left: 10%; animation-delay: 0s;"></div>
+    <div class="heart" style="left: 25%; animation-delay: 2s;"></div>
+    <div class="heart" style="left: 40%; animation-delay: 4s;"></div>
+    <div class="heart" style="left: 55%; animation-delay: 1s;"></div>
+    <div class="heart" style="left: 70%; animation-delay: 3s;"></div>
+    <div class="heart" style="left: 85%; animation-delay: 5s;"></div>
+  </div>
+
+  <!-- Main text -->
+  <div class="text-block">
+    <h1>HELLO LOVE!</h1>
+    <h4>WHY ARE YOU HERE TODAY ?</h4>
+  </div>
+
+  <!-- Clickable boxes -->
+  <div class="button-row">
+    <button onclick="openBox(1)">I am happy!</button>
+    <button onclick="openBox(2)">I feel sad :(</button>
+    <button onclick="openBox(3)">Complaint!!!</button>
+  </div>
+
+  <!-- Popup modal -->
+  <div class="popup-box" id="popup">
+    <div class="popup-content" id="popup-content">
+      <span class="close-btn" onclick="closeBox()">×</span>
+      <p id="popup-text">This is Box One content.</p>
+    </div>
+  </div>
+
+  <!-- Bottom text -->
+  <div class="bottom-text">
+    - HOPE YOU COME AGAIN FOR BETTER REASONS -  
+    YOURS MUZU -
+  </div>
+
+  <!-- Secret Sam's Corner button -->
+  <button onclick="openSecret()" class="secret-button">🔒 Secret Sam's Corner</button>
+
+  <!-- Scripts -->
+  <script>
+    function openBox(boxNumber) {
+      const popup = document.getElementById('popup');
+      const text = document.getElementById('popup-text');
+
+      if (boxNumber === 1) {
+        text.textContent = "This is Box One's detailed paragraph. You can write anything here.";
+      } else if (boxNumber === 2) {
+        text.textContent = "This is Box Two's paragraph. Maybe a story or explanation goes here.";
+      } else if (boxNumber === 3) {
+        text.innerHTML = `
+         Tell me your complaint or anything you feel. I will listen. 💌<br><br>
+          <form action="https://formspree.io/f/xpwlqkgg" method="POST">
+            <textarea name="message" rows="6" style="width:90%; border-radius:10px; padding:10px; font-size:1em;"></textarea><br><br>
+            <button type="submit" style="padding:10px 20px; font-size:1em; border:none; border-radius:20px; background:#ff99aa; color:white; cursor:pointer;">Send</button>
+          </form>
+        `;
+      }
+
+      popup.style.display = 'flex';
+    }
+
+    function closeBox() {
+      document.getElementById('popup').style.display = 'none';
+    }
+
+    function openSecret() {
+      const password = prompt("Enter the secret password:");
+      if (password === "samscorner") {
+        document.getElementById('popup-text').textContent = "💖 Welcome to Secret Sam's Corner! Ill update it soon!";
+        document.getElementById('popup').style.display = 'flex';
+      } else if (password !== null) {
+        alert("Wrong password!");
+      }
+    }
+
+    // Disable right-click context menu
+    document.addEventListener('contextmenu', event => event.preventDefault());
+
+    // Disable text selection
+    document.addEventListener('selectstart', event => event.preventDefault());
+
+    // Disable Ctrl+C and Cmd+C
+    document.addEventListener('keydown', function(e) {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'c') {
+        e.preventDefault();
+      }
+    });
+
+    // Click heart effect
+    document.body.addEventListener('click', function(e) {
+      const heart = document.createElement('div');
+      heart.classList.add('click-heart');
+      heart.innerHTML = '❤️';
+      document.body.appendChild(heart);
+      heart.style.left = (e.clientX - 10) + 'px';
+      heart.style.top = (e.clientY - 20) + 'px';
+
+      setTimeout(() => heart.remove(), 1000);
+    });
+  </script>
+</body>
+</html>
